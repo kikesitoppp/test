@@ -5,16 +5,16 @@ const resultsContainer = document.getElementById('results-container');
 
 // Ocultar el título y esperar 5 segundos antes de iniciar el cuestionario
 titleElement.textContent = 'CUESTIONARIO PARA SABER CUANTO ME QUIERES';
-setTimeout(startQuiz, 5000);
-
-// Función para iniciar el cuestionario
-function startQuiz() {
-  questionsContainer.style.display = 'block';
-  showQuestion();
-}
+titleElement.style.display = 'block'; // Mostrar el título
+setTimeout(function() {
+  titleElement.style.display = 'none'; // Ocultar el título después de 5 segundos
+  questionsContainer.style.display = 'block'; // Mostrar el contenedor de preguntas
+  showQuestion(); // Iniciar el cuestionario
+}, 5000);
 
 // Función para mostrar la pregunta actual
 let currentQuestion = 0;
+let correctAnswers = 0;
 const questions = [
   {
     text: '¿Cuál es mi nombre completo?',
@@ -58,10 +58,4 @@ const questions = [
 function showQuestion() {
   const questionElement = document.createElement('p');
   questionElement.textContent = questions[currentQuestion].text;
-  questionsContainer.appendChild(questionElement);
-
-  let inputElement;
-  if (questions[currentQuestion].type === 'text') {
-    inputElement = document.createElement('input');
-    inputElement.type = 'text';
-    inputElement.placeholder = 'Escribe tu
+  questionsContainer.appendChild(questionElement
